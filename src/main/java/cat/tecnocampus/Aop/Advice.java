@@ -1,16 +1,12 @@
 package cat.tecnocampus.Aop;
 
-import cat.tecnocampus.domain.Classroom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.List;
 
 
 @Aspect
@@ -20,17 +16,17 @@ public class Advice {
     private static boolean runAround = true;
 
     private static final Logger logger = LoggerFactory.getLogger(Advice.class);
-/*
+
     //Create a pointcut for all methods (there is only one) that have a single attribute of class Classroom
-    @Pointcut("execution(* cat.tecnocampus.application.ControllerDAO(..)) && args(classroom,..)")
-    public void pointcutSingleAttribute(Classroom classroom) {}
+    @Pointcut("execution(* cat.tecnocampus.application.ControllerDAO.*(..))")
+    public void pointcutSingleAttribute() { }
 
     //Create a before advice for the first pointcut that logs the message "Working with a classroom"
-    @Before("pointcutSingleAttribute(classroom)")
-    public void beforeListUsers(Classroom classroom) {
+    @Before("pointcutSingleAttribute()")
+    public void beforeAllMethods(){
         logger.info("Working with a classroom");
     }
-*/
+
     //Create a pointcut for all methods that begins with the word find
     @Pointcut("execution(* cat.tecnocampus.application.ControllerDAO.find*(..))")
     public void pointcutBeginsWordFind() {}
